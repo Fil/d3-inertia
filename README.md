@@ -20,7 +20,7 @@ This method, introduced by [Jason Davies](https://www.jasondavies.com/maps/rotat
 
 Include the script in your page with
 ```
-<script src="d3-inertia.js"></script>
+<script src="https://unpkg.com/d3-inertia"></script>
 ```
 
 Then, define a `render()` function that draws (and redraws) the globe, and call:
