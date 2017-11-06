@@ -18,8 +18,9 @@ This method, introduced by [Jason Davies](https://www.jasondavies.com/maps/rotat
 
 **d3-inertia** packages this method.
 
-Include the script in your page with
+Include the scripts in your page with
 ```
+<script src="https://unpkg.com/versor"></script>
 <script src="https://unpkg.com/d3-inertia"></script>
 ```
 
