@@ -2,8 +2,13 @@
 
 An extension to [d3-drag](https://github.com/d3/d3-drag) that continues the mouse movement with some inertia (by default, 5 seconds).
 
+The `inertia` object exposes a `position` and a `velocity`, that correspond to the mouse coordinates relative to the target of the `d3.drag` method. During the drag gesture, the position just follows the mouse, and the velocity accumulates the movement. When the drag gesture ends, the `render()` method is called repeatedly with a tweening argument `t` that goes from 0 to 1. It is up to you to know what to do with these vectors.
 
-This [example](https://bl.ocks.org/Fil/a034e32156b7b25ee9054c1bc50dc0ca) demonstrates some of the parameters of the inertia function. As you can see, `d3.inertia` can be used on its own, but you will need to manage quite a few parameters (TODO: a helping function for common use cases).
+The most simple case is: `currentPosition = last position + t * velocity`.
+
+This [example](https://bl.ocks.org/Fil/a034e32156b7b25ee9054c1bc50dc0ca) demonstrates a more creative use of the parameters. As you can see, `d3.inertia` can be used on its own, but you will need to manage quite a few parameters.
+
+(TODO: a helping function for common use cases).
 
 
 
