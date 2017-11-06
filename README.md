@@ -2,7 +2,8 @@
 
 An extension to [d3-drag](https://github.com/d3/d3-drag) that continues the mouse movement with some inertia (by default, 5 seconds).
 
-We currently have no example of using this directly. (TODO)
+
+This [example](https://bl.ocks.org/Fil/a034e32156b7b25ee9054c1bc50dc0ca) demonstrates some of the parameters of the inertia function. As you can see, `d3.inertia` can be used on its own, but you will need to manage quite a few parameters (TODO: a helping function for common use cases).
 
 
 
