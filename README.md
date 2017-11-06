@@ -8,7 +8,7 @@ We currently have no example of using this directly. (TODO)
 
 # Dragging the globe
 
-[<img alt="Versor Dragging with Inertia" src="https://raw.githubusercontent.com/d3/d3-inertia/master/img/globe-inertia.gif" width="600" height="409">](https://bl.ocks.org/Fil/f48de8e9207799017093a169031adb02/)
+[<img alt="Versor Dragging with Inertia" src="https://github.com/Fil/d3-inertia/raw/master/img/globe-inertia.gif" width="600" height="409">](https://bl.ocks.org/Fil/f48de8e9207799017093a169031adb02/)
 
 The naïve method to rotate a globe uses `mouse.x` and `mouse.y` as proxies for longitude and latitude. It works when the rotation is small, but try to put the globe "upside-down" and suddenly moving the mouse to the left rotates the globe to the right, and vice versa.
 
