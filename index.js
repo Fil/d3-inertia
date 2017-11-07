@@ -1,1 +1,1 @@
-export {inertiaDragHelper, inertiaDrag, default as inertia} from "./src/inertia";
+export {geoInertiaDragHelper, geoInertiaDrag, default as inertia} from "./src/inertia";

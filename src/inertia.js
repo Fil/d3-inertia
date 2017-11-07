@@ -2,7 +2,7 @@ import { drag } from "d3-drag";
 import { mouse } from "d3-selection";
 import { timer } from "d3-timer";
 
-export function inertiaDragHelper(opt) {
+export function geoInertiaDragHelper(opt) {
   var v0, // Mouse position in Cartesian coordinates at start of drag gesture.
     r0, // Projection rotation as Euler angles at start.
     q0, // Projection rotation as versor at start.
@@ -50,12 +50,12 @@ export function inertiaDragHelper(opt) {
   return inertia;
 }
 
-export function inertiaDrag(target, render, proj, opt) {
+export function geoInertiaDrag(target, render, proj, opt) {
   // use the "global" projection function if none given
   if (!proj && typeof projection == "function") proj = projection;
   if (!opt) opt = {};
   // complete params: (projection, render, startDrag, dragging, endDrag)
-  var inertia = inertiaDragHelper({
+  var inertia = geoInertiaDragHelper({
     projection: proj,
     render: function(rotation) {
       proj.rotate(rotation);

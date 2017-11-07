@@ -33,7 +33,7 @@ Include the scripts in your page with
 Then, define a `render()` function that draws (and redraws) the globe, and call:
 
 ```
-var inertia = d3.inertiaDrag(canvas, function() { render(); }, projection);
+var inertia = d3.geoInertiaDrag(canvas, function() { render(); }, projection);
 ```
 
 
