@@ -84,7 +84,8 @@ export default function inertiaHelper(opt) {
       var position = mouse(this);
       inertia.position = position;
       inertia.velocity = [0, 0];
-      if (inertia.timer) inertia.timer.stop(), inertia.timer = null;
+      if (inertia.timer) inertia.timer.stop(), inertia.timer = null, this.classList.remove('inertia');
+      this.classList.add('dragging');
       opt.start && opt.start.call(this, position);
     },
     move: function() {
@@ -103,15 +104,17 @@ export default function inertiaHelper(opt) {
     },
     end: function() {
       var v = inertia.velocity;
-      if (v[0] * v[0] + v[1] * v[1] < 100) return;
+      if (v[0] * v[0] + v[1] * v[1] < 100) return inertia.timer = null, this.classList.remove('inertia');
 
+      this.classList.remove('dragging');
+      this.classList.add('inertia');
       opt.end && opt.end();
 
       inertia.timer = timer(function(e) {
         inertia.t = limit * (1 - Math.exp(-B * e / A));
         opt.render && opt.render(inertia.t);
         if (inertia.t > 1) {
-          inertia.timer.stop(), inertia.timer = null;
+          inertia.timer.stop(), inertia.timer = null, this.classList.remove('inertia');
           inertia.velocity = [0, 0];
           inertia.t = 1;
         }
