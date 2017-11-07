@@ -110,11 +110,12 @@ export default function inertiaHelper(opt) {
       this.classList.add('inertia');
       opt.end && opt.end();
 
+      var me = this;
       inertia.timer = timer(function(e) {
         inertia.t = limit * (1 - Math.exp(-B * e / A));
         opt.render && opt.render(inertia.t);
         if (inertia.t > 1) {
-          inertia.timer.stop(), inertia.timer = null, this.classList.remove('inertia');
+          inertia.timer.stop(), inertia.timer = null, me.classList.remove('inertia');
           inertia.velocity = [0, 0];
           inertia.t = 1;
         }
