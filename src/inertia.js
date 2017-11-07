@@ -84,7 +84,7 @@ export default function inertiaHelper(opt) {
       var position = mouse(this);
       inertia.position = position;
       inertia.velocity = [0, 0];
-      if (inertia.timer) inertia.timer.stop();
+      if (inertia.timer) inertia.timer.stop(), inertia.timer = null;
       opt.start && opt.start.call(this, position);
     },
     move: function() {
@@ -111,7 +111,7 @@ export default function inertiaHelper(opt) {
         inertia.t = limit * (1 - Math.exp(-B * e / A));
         opt.render && opt.render(inertia.t);
         if (inertia.t > 1) {
-          inertia.timer.stop();
+          inertia.timer.stop(), inertia.timer = null;
           inertia.velocity = [0, 0];
           inertia.t = 1;
         }
