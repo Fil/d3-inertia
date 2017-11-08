@@ -15,6 +15,7 @@ This [example](https://bl.ocks.org/Fil/a034e32156b7b25ee9054c1bc50dc0ca) demonst
 # Dragging the globe
 
 [<img alt="Versor Dragging with Inertia" src="https://github.com/Fil/d3-inertia/raw/master/img/globe-inertia.gif" width="600" height="409">](https://bl.ocks.org/Fil/f48de8e9207799017093a169031adb02/)
+<br>*[Canvas example + code](https://bl.ocks.org/Fil/f48de8e9207799017093a169031adb02/)*
 
 The naïve method to rotate a globe uses `mouse.x` and `mouse.y` as proxies for longitude and latitude. It works when the rotation is small, but try to put the globe "upside-down" and suddenly moving the mouse to the left rotates the globe to the right, and vice versa.
 
@@ -35,6 +36,9 @@ Then, define a `render()` function that draws (and redraws) the globe, and call:
 ```
 var inertia = d3.geoInertiaDrag(canvas, function() { render(); }, projection);
 ```
+
+[<img alt="Versor Dragging with Inertia" src="https://github.com/Fil/d3-inertia/raw/master/img/eclipses.gif" width="400" height="392">](https://visionscarto.net/empreintes-d-eclipses)
+<br>*[SVG example](https://visionscarto.net/empreintes-d-eclipses)  + [code](https://bl.ocks.org/Fil/63366253a5d2f00640c15b096c29a38c)*
 
 
 # Credits
