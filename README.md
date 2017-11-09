@@ -31,14 +31,30 @@ Include the scripts in your page with
 <script src="https://unpkg.com/d3-inertia"></script>
 ```
 
-Then, define a `render()` function that draws (and redraws) the globe, and call:
+Then, define a `render()` function that redraws the globe, and call:
 
 ```
-var inertia = d3.geoInertiaDrag(canvas, function() { render(); }, projection);
+var inertia = d3.geoInertiaDrag(canvas, function() { render(); }, [projection], [opt]);
 ```
 
 [<img alt="Versor Dragging with Inertia" src="https://github.com/Fil/d3-inertia/raw/master/img/eclipses.gif" width="400" height="392">](https://visionscarto.net/empreintes-d-eclipses)
 <br>*[SVG example](https://visionscarto.net/empreintes-d-eclipses)  + [code](https://bl.ocks.org/Fil/63366253a5d2f00640c15b096c29a38c)*
+
+*canvas* is the target container (it can also be *svg*)
+
+*projection* is an object with two methods:
+
+- *projection.rotate([r])* gets and sets the rotation.
+
+- *projection.invert([x,y])* transforms screen coordinates into spherical coordinates *lambda, phi*; most [projections](https://github.com/d3/d3-geo-projection) have an exact invert, but for the few which do not, this doesn't have to be very accurate to give an “almost correct” movement.
+
+If a projection is defined globally, and not specified in the function call, the plugin will use it.
+
+*opt* is an array of options, which can include:
+
+- *start*, *move*, *end*: callback functions on the corresponding events
+
+- *time*: reference time for the interia (in ms, default 5000)
 
 
 # Credits
