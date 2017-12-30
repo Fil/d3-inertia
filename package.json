@@ -1,6 +1,6 @@
 {
   "name": "d3-inertia",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Inertia Dragging",
   "keywords": [
     "d3",
@@ -11,8 +11,8 @@
   ],
   "license": "MIT",
   "main": "build/d3-inertia.js",
-  "unpkg": "build/d3-inertia.js",
-  "jsdelivr": "build/d3-inertia.js",
+  "unpkg": "build/d3-inertia.min.js",
+  "jsdelivr": "build/d3-inertia.min.js",
   "module": "index",
   "jsnext:main": "index",
   "homepage": "https://github.com/Fil/d3-inertia",
