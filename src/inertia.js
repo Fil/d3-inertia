@@ -3,7 +3,8 @@ import { mouse } from "d3-selection";
 import { timer } from "d3-timer";
 
 export function geoInertiaDragHelper(opt) {
-  var v0, // Mouse position in Cartesian coordinates at start of drag gesture.
+  var projection = opt.projection,
+    v0, // Mouse position in Cartesian coordinates at start of drag gesture.
     r0, // Projection rotation as Euler angles at start.
     q0, // Projection rotation as versor at start.
     v10, // Mouse position in Cartesian coordinates just before end of drag gesture.
