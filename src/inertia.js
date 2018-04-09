@@ -1,6 +1,7 @@
 import { drag } from "d3-drag";
 import { mouse } from "d3-selection";
 import { timer } from "d3-timer";
+import { default as versor } from "versor";
 
 export function geoInertiaDragHelper(opt) {
   var projection = opt.projection,
@@ -85,7 +86,7 @@ export default function inertiaHelper(opt) {
       var position = mouse(this);
       inertia.position = position;
       inertia.velocity = [0, 0];
-      if (inertia.timer) inertia.timer.stop(), inertia.timer = null, this.classList.remove('inertia');
+      inertia.timer.stop(), this.classList.remove('inertia');
       this.classList.add('dragging');
       opt.start && opt.start.call(this, position);
     },
@@ -105,18 +106,18 @@ export default function inertiaHelper(opt) {
     },
     end: function() {
       var v = inertia.velocity;
-      if (v[0] * v[0] + v[1] * v[1] < 100) return inertia.timer = null, this.classList.remove('inertia');
+      if (v[0] * v[0] + v[1] * v[1] < 100) return inertia.timer.stop(), this.classList.remove('inertia');
 
       this.classList.remove('dragging');
       this.classList.add('inertia');
       opt.end && opt.end();
 
       var me = this;
-      inertia.timer = timer(function(e) {
+      inertia.timer.restart(function(e) {
         inertia.t = limit * (1 - Math.exp(-B * e / A));
         opt.render && opt.render(inertia.t);
         if (inertia.t > 1) {
-          inertia.timer.stop(), inertia.timer = null, me.classList.remove('inertia');
+          inertia.timer.stop(), me.classList.remove('inertia');
           inertia.velocity = [0, 0];
           inertia.t = 1;
         }
@@ -124,9 +125,11 @@ export default function inertiaHelper(opt) {
     },
     position: [0, 0],
     velocity: [0, 0], // in pixels/s
-    timer: null,
+    timer: timer(function(){}),
     time: 0
   };
+  
+  inertia.timer.stop();
 
   return inertia;
 }

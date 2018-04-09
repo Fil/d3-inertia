@@ -1,6 +1,6 @@
 {
   "name": "d3-inertia",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Inertia Dragging",
   "keywords": [
     "d3",
@@ -35,7 +35,7 @@
     }
   ],
   "scripts": {
-    "pretest": "rm -rf build && mkdir build && rollup --banner \"$(preamble)\" -g d3-drag:d3,d3-selection:d3,d3-timer:d3 -f umd -n d3 --extend d3 -o build/d3-inertia.js -- index.js",
+    "pretest": "rm -rf build && mkdir build && rollup -c --banner \"$(preamble)\"",
     "test": "tape 'test/**/*-test.js'",
     "prepublishOnly": "npm run test && uglifyjs --preamble \"$(preamble)\" build/d3-inertia.js -c negate_iife=false -m -o build/d3-inertia.min.js",
     "postpublish": "zip -j build/d3-inertia.zip -- LICENSE.txt README.md build/d3-inertia.js build/d3-inertia.min.js"
