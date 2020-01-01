@@ -54,7 +54,7 @@ export function geoInertiaDragHelper(opt) {
 
 export function geoInertiaDrag(target, render, proj, opt) {
   // use the "global" projection function if none given
-  if (!proj && typeof projection == "function") proj = projection;
+  if (!proj && typeof window.projection == "function") proj = window.projection;
   if (!opt) opt = {};
   // complete params: (projection, render, startDrag, dragging, endDrag)
   var inertia = geoInertiaDragHelper({
@@ -77,7 +77,7 @@ export function geoInertiaDrag(target, render, proj, opt) {
   return inertia;
 }
 
-export default function inertiaHelper(opt) {
+export function inertiaHelper(opt) {
   var A = opt.time || 5000; // reference time in ms
   var limit = 1.0001;
   var B = -Math.log(1 - 1 / limit);

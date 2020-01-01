@@ -10,11 +10,11 @@
     "inertia"
   ],
   "license": "MIT",
-  "main": "build/d3-inertia.js",
-  "unpkg": "build/d3-inertia.min.js",
-  "jsdelivr": "build/d3-inertia.min.js",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "dist/d3-inertia.js",
+  "unpkg": "dist/d3-inertia.min.js",
+  "jsdelivr": "dist/d3-inertia.min.js",
+  "module": "src/index.js",
+  "jsnext:main": "src/index.js",
   "homepage": "https://github.com/Fil/d3-inertia",
   "repository": {
     "type": "git",
@@ -35,22 +35,21 @@
     }
   ],
   "scripts": {
-    "pretest": "rm -rf build && mkdir build && rollup -c --banner \"$(preamble)\"",
-    "test": "tape 'test/**/*-test.js'",
-    "prepublishOnly": "npm run test && uglifyjs --preamble \"$(preamble)\" build/d3-inertia.js -c negate_iife=false -m -o build/d3-inertia.min.js",
-    "postpublish": "zip -j build/d3-inertia.zip -- LICENSE.txt README.md build/d3-inertia.js build/d3-inertia.min.js"
+    "pretest": "rollup -c",
+    "test": "tape 'test/**/*-test.js' && eslint src",
+    "prepublishOnly": "rm -rf dist && yarn test",
+    "postpublish": "zip -j dist/d3-inertia.zip -- LICENSE.txt README.md dist/d3-inertia.js dist/d3-inertia.min.js"
   },
   "dependencies": {
-    "d3": "^4.0",
     "d3-drag": "^1.2.1",
     "d3-selection": "^1.1.0",
     "d3-timer": "^1.0.7",
     "versor": "^0.1"
   },
   "devDependencies": {
-    "package-preamble": "0.1",
-    "rollup": "0.49",
-    "tape": "4",
-    "uglify-js": "*"
+    "eslint": "6",
+    "rollup": "1",
+    "rollup-plugin-terser": "5",
+    "tape": "4"
   }
 }
