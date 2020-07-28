@@ -1,6 +1,9 @@
 {
   "name": "d3-inertia",
-  "version": "0.1.0",
+  "version": "0.2.0-rc.1",
+  "publishConfig": {
+    "tag": "next"
+  },
   "description": "Inertia Dragging",
   "keywords": [
     "d3",
@@ -41,9 +44,9 @@
     "postpublish": "zip -j dist/d3-inertia.zip -- LICENSE.txt README.md dist/d3-inertia.js dist/d3-inertia.min.js"
   },
   "dependencies": {
-    "d3-drag": "^1.2.1",
-    "d3-selection": "^1.1.0",
-    "d3-timer": "^1.0.7",
+    "d3-drag": ">=2.0.0-rc.1",
+    "d3-selection": ">=2.0.0-rc.1",
+    "d3-timer": ">=2.0.0-rc.1",
     "versor": "^0.1"
   },
   "devDependencies": {
