@@ -1,5 +1,5 @@
+import { select, event } from "d3-selection"; // for d3-selection v1
 import { drag } from "d3-drag";
-import { mouse } from "d3-selection";
 import { timer } from "d3-timer";
 import { default as versor } from "versor";
 
@@ -53,9 +53,11 @@ export function geoInertiaDragHelper(opt) {
 }
 
 export function geoInertiaDrag(target, render, proj, opt) {
-  // use the "global" projection function if none given
-  if (!proj && typeof window.projection == "function") proj = window.projection;
   if (!opt) opt = {};
+  // target can be an element, a selector, a function, or a selection
+  // but in case of a selection we make sure to reselect it with d3-selection@2
+  if (target.node) target = target.node();
+  target = select(target);
   // complete params: (projection, render, startDrag, dragging, endDrag)
   var inertia = geoInertiaDragHelper({
     projection: proj,
@@ -82,16 +84,18 @@ export function inertiaHelper(opt) {
   var limit = 1.0001;
   var B = -Math.log(1 - 1 / limit);
   var inertia = {
-    start: function() {
-      var position = mouse(this);
+    start: function(e) {
+      e = e || event;
+      var position = [e.x, e.y];
       inertia.position = position;
       inertia.velocity = [0, 0];
       inertia.timer.stop(), this.classList.remove('inertia');
       this.classList.add('dragging');
       opt.start && opt.start.call(this, position);
     },
-    move: function() {
-      var position = mouse(this);
+    move: function(e) {
+      e = e || event;
+      var position = [e.x, e.y];
       var time = performance.now();
       var deltaTime = time - inertia.time;
       var decay = 1 - Math.exp(-deltaTime / 1000);
