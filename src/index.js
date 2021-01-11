@@ -122,7 +122,7 @@ export function inertiaHelper(opt) {
       var time = performance.now();
       var deltaTime = time - inertia.time;
       
-      if (opt.hold == undefined) opt.hold = 50; // default flick->drag threshold time (0 disables inertia)
+      if (opt.hold == undefined) opt.hold = 100; // default flick->drag threshold time (0 disables inertia)
       
       if (deltaTime >= opt.hold) return inertia.timer.stop(), opt.stop && opt.stop();
       
