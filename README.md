@@ -54,7 +54,7 @@ If a projection is defined globally, and not specified in the function call, the
 
 - *start*, *move*, *end*: callback functions on the corresponding events (*end* is invoked only if conditions for inertia are met)
 
-- *stop*, *finish*: extra callback functions invoked if the conditions for inertia are not met or after it finishes respectively
+- *stop*, *finish*: extra callback functions invoked if the conditions for inertia are not met and after it finishes respectively
 
 - *time*: reference time for the inertia (in ms, default 5000)
 
