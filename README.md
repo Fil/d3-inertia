@@ -58,7 +58,7 @@ If a projection is defined globally, and not specified in the function call, the
 
 - *time*: reference time for the inertia (in ms, default 5000)
 
-- *hold*: threshold time beteen the final *move* and *end* events after which inertia will be cancelled (in ms, default 50)
+- *hold*: threshold time beteen the final *move* and *end* events after which inertia will be cancelled (in ms, default 100)
 
 
 # Credits
