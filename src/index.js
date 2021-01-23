@@ -40,6 +40,8 @@ export function geoInertiaDragHelper(opt) {
       v11 = versor.cartesian(projection.invert(inertia.position));
       opt.end && opt.end();
     },
+    stop: opt.stop,
+    finish: opt.finish,
     render: function(t) {
       var rotation = versor.rotation(
         versor.multiply(q10, versor.delta(v10, v11, t * 1000))
@@ -68,7 +70,10 @@ export function geoInertiaDrag(target, render, proj, opt) {
     start: opt.start,
     move: opt.move,
     end: opt.end,
-    time: opt.time
+    stop: opt.stop,
+    finish: opt.finish,
+    time: opt.time,
+    hold: opt.hold
   });
   target.call(
     drag()
@@ -109,10 +114,18 @@ export function inertiaHelper(opt) {
       opt.move && opt.move.call(this, position);
     },
     end: function() {
+      this.classList.remove('dragging', 'inertia');
+      
       var v = inertia.velocity;
-      if (v[0] * v[0] + v[1] * v[1] < 100) return inertia.timer.stop(), this.classList.remove('inertia');
+      if (v[0] * v[0] + v[1] * v[1] < 100) return inertia.timer.stop(), opt.stop && opt.stop();
 
-      this.classList.remove('dragging');
+      var time = performance.now();
+      var deltaTime = time - inertia.time;
+      
+      if (opt.hold == undefined) opt.hold = 100; // default flick->drag threshold time (0 disables inertia)
+      
+      if (deltaTime >= opt.hold) return inertia.timer.stop(), opt.stop && opt.stop();
+      
       this.classList.add('inertia');
       opt.end && opt.end();
 
@@ -124,6 +137,7 @@ export function inertiaHelper(opt) {
           inertia.timer.stop(), me.classList.remove('inertia');
           inertia.velocity = [0, 0];
           inertia.t = 1;
+          opt.finish && opt.finish();
         }
       });
     },

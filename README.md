@@ -52,9 +52,13 @@ If a projection is defined globally, and not specified in the function call, the
 
 *opt* is an array of options, which can include:
 
-- *start*, *move*, *end*: callback functions on the corresponding events
+- *start*, *move*, *end*: callback functions on the corresponding events (*end* is invoked only if conditions for inertia are met)
 
-- *time*: reference time for the interia (in ms, default 5000)
+- *stop*, *finish*: extra callback functions invoked if the conditions for inertia are not met and after it finishes respectively
+
+- *time*: reference time for the inertia (in ms, default 5000)
+
+- *hold*: threshold time beteen the final *move* and *end* events after which inertia will be cancelled (in ms, default 100)
 
 
 # Credits
