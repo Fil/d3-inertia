@@ -1,4 +1,4 @@
-import { select, event } from "d3-selection"; // for d3-selection v1
+import { select } from "d3-selection"; // for d3-selection v2
 import { drag } from "d3-drag";
 import { timer } from "d3-timer";
 import { default as versor } from "versor";
@@ -90,7 +90,6 @@ export function inertiaHelper(opt) {
   var B = -Math.log(1 - 1 / limit);
   var inertia = {
     start: function(e) {
-      e = e || event;
       var position = [e.x, e.y];
       inertia.position = position;
       inertia.velocity = [0, 0];
@@ -99,7 +98,6 @@ export function inertiaHelper(opt) {
       opt.start && opt.start.call(this, position);
     },
     move: function(e) {
-      e = e || event;
       var position = [e.x, e.y];
       var time = performance.now();
       var deltaTime = time - inertia.time;
@@ -146,7 +144,7 @@ export function inertiaHelper(opt) {
     timer: timer(function(){}),
     time: 0
   };
-  
+
   inertia.timer.stop();
 
   return inertia;
